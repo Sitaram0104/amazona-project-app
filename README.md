@@ -12,3 +12,4 @@ add to github
 12 add redux to HomeScreen
 13 add redux to product screen
 14 handle add to cart button
+15 implement add to cart action
