@@ -16,3 +16,4 @@ add to github
 16 build cart screen
 17 implement remove from cart action
 18 create sample users in MongoDB
+19 create sample product in mongodb
