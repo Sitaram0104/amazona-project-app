@@ -9,3 +9,4 @@ add to github
 9 create nodejs server
 10 load products from backend
 11 install eslint
+12 add redux to HomeScreen
