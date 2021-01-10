@@ -4,6 +4,7 @@ import { signout } from "./actions/userActions.js";
 import CartScreen from "./screens/CartScreen.js";
 import HomeScreen from "./screens/HomeScreen.js";
 import ProductScreen from "./screens/ProductScreen.js";
+import RegisterScreen from "./screens/RegisterScreen.js";
 import SigninScreen from "./screens/SigninScreen.js";
 
 function App() {
@@ -53,7 +54,7 @@ function App() {
         <Route path="/cart/:id?" component={CartScreen} />
         <Route path="/product/:id" component={ProductScreen} />
         <Route path="/signin" component={SigninScreen} />
-        {/* <Route path="/register" component={RegisterScreen} /> */}
+        <Route path="/register" component={RegisterScreen} />
         <Route path="/" component={HomeScreen} exact />
       </main>
       <footer className="row center">All rights reserved</footer>

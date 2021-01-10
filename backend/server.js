@@ -22,8 +22,12 @@ app.get("/", (req, res) => {
   res.send("Server is ready");
 });
 
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
+  const x = 0;
+  if (x === 1) {
+    next();
+  }
 });
 
 const PORT = process.env.PORT || 8000;
