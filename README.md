@@ -10,3 +10,4 @@ add to github
 10 load products from backend
 11 install eslint
 12 add redux to HomeScreen
+13 add redux to product screen
