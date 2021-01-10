@@ -7,3 +7,4 @@ add to github
 7 rating and product component
 8 build ProductScreen
 9 create nodejs server
+10 load products from backend
