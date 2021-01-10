@@ -1,6 +1,5 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
-import data from "../data.js";
 import Product from "../models/productModel.js";
 
 const productRouter = express.Router();
@@ -13,14 +12,15 @@ productRouter.get(
   })
 );
 
-productRouter.get(
-  "/seed",
-  expressAsyncHandler(async (req, res) => {
-    // await Product.remove({});
-    const createdProduct = await Product.insertMany(data.products);
-    res.send({ createdProduct });
-  })
-);
+// to import from data.js to databse
+// productRouter.get(
+//   "/seed",
+//   expressAsyncHandler(async (req, res) => {
+//     // await Product.remove({});
+//     const createdProduct = await Product.insertMany(data.products);
+//     res.send({ createdProduct });
+//   })
+// );
 
 productRouter.get(
   "/:id",
