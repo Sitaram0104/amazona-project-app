@@ -20,3 +20,5 @@ add to github
 20 create signin backend
 21 design signin screen
 22 implement signin action
+23 create Register screen
+24 create shipping screen
