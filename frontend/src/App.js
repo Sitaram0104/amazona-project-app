@@ -3,6 +3,7 @@ import { Link, Route } from "react-router-dom";
 import { signout } from "./actions/userActions.js";
 import CartScreen from "./screens/CartScreen.js";
 import HomeScreen from "./screens/HomeScreen.js";
+import OrderScreen from "./screens/OrderScreen.js";
 import PaymentMethodScreen from "./screens/PaymentMethodScreen.js";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen.js";
 import ProductScreen from "./screens/ProductScreen.js";
@@ -61,6 +62,7 @@ function App() {
         <Route path="/shipping" component={ShippingAddressScreen} />
         <Route path="/payment" component={PaymentMethodScreen} />
         <Route path="/placeorder" component={PlaceOrderScreen} />
+        <Route path="/order/:id" component={OrderScreen} />
         <Route path="/" component={HomeScreen} exact />
       </main>
       <footer className="row center">All rights reserved</footer>
