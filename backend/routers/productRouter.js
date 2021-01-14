@@ -14,10 +14,11 @@ productRouter.get(
 );
 
 // to import from data.js to databse
+// import data from "../data.js";
 // productRouter.get(
 //   "/seed",
 //   expressAsyncHandler(async (req, res) => {
-//     // await Product.remove({});
+//     await Product.remove({});
 //     const createdProduct = await Product.insertMany(data.products);
 //     res.send({ createdProduct });
 //   })
@@ -73,6 +74,21 @@ productRouter.put(
       product.description = req.body.description;
       const updatedProduct = await product.save();
       res.send({ message: "Product Updated", product: updatedProduct });
+    } else {
+      res.status(404).send({ message: "Product Not Found" });
+    }
+  })
+);
+
+productRouter.delete(
+  "/:id",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      const deletedProduct = await product.remove();
+      res.send({ message: "Product Deleted", product: deletedProduct });
     } else {
       res.status(404).send({ message: "Product Not Found" });
     }
