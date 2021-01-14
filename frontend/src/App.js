@@ -1,12 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Route } from "react-router-dom";
 import { signout } from "./actions/userActions.js";
+import PrivateRoute from "./components/PrivateRoute.js";
 import CartScreen from "./screens/CartScreen.js";
 import HomeScreen from "./screens/HomeScreen.js";
+import OrderHistoryScreen from "./screens/OrderHistoryScreen.js";
 import OrderScreen from "./screens/OrderScreen.js";
 import PaymentMethodScreen from "./screens/PaymentMethodScreen.js";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen.js";
 import ProductScreen from "./screens/ProductScreen.js";
+import ProfileScreen from "./screens/ProfileScreen.js";
 import RegisterScreen from "./screens/RegisterScreen.js";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen.js";
 import SigninScreen from "./screens/SigninScreen.js";
@@ -44,13 +47,26 @@ function App() {
                 <i className="fa fa-caret-down"></i>
               </Link>
               <ul className="dropdown-content">
-                <Link to="#signout" onClick={signoutHandler}>
-                  Sign Out
-                </Link>
+                <li>
+                  <Link to="/profile">Profile</Link>
+                </li>
+                <li>
+                  <Link to="/orderhistory">Order History</Link>
+                </li>
+                <li>
+                  <Link to="#signout" onClick={signoutHandler}>
+                    Sign Out
+                  </Link>
+                </li>
               </ul>
             </div>
           ) : (
             <Link to="/signin">Sign In</Link>
+          )}
+          {userInfo && userInfo.isAdmin && (
+            <div className="dropdown">
+              <Link to="#admin">Admin</Link>
+            </div>
           )}
         </div>
       </header>
@@ -62,7 +78,9 @@ function App() {
         <Route path="/shipping" component={ShippingAddressScreen} />
         <Route path="/payment" component={PaymentMethodScreen} />
         <Route path="/placeorder" component={PlaceOrderScreen} />
+        <Route path="/orderhistory" component={OrderHistoryScreen} />
         <Route path="/order/:id" component={OrderScreen} />
+        <PrivateRoute path="/profile" component={ProfileScreen} />
         <Route path="/" component={HomeScreen} exact />
       </main>
       <footer className="row center">All rights reserved</footer>
