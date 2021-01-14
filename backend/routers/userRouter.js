@@ -92,4 +92,12 @@ userRouter.put(
   })
 );
 
+userRouter.get(
+  "/",
+  expressAsyncHandler(async (req, res) => {
+    const users = await User.find();
+    res.send(users);
+  })
+);
+
 export default userRouter;

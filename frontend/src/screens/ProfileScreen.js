@@ -25,14 +25,14 @@ export default function ProfileScreen() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!user) {
+    if (!user || successUpdate) {
       dispatch({ type: USER_UPDATE_PROFILE_RESET });
       dispatch(detailsUser(userInfo._id));
     } else {
       setName(user.name);
       setEmail(user.email);
     }
-  }, [dispatch, userInfo, user]);
+  }, [dispatch, userInfo, user, successUpdate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
