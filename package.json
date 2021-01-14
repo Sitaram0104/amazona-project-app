@@ -20,7 +20,8 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.11.11"
+    "mongoose": "^5.11.11",
+    "react-paypal-button-v2": "^2.6.2"
   },
   "devDependencies": {
     "eslint": "^7.17.0",
