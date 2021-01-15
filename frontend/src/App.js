@@ -3,6 +3,7 @@ import { Link, Route } from "react-router-dom";
 import { signout } from "./actions/userActions.js";
 import AdminRoute from "./components/AdminRoute.js";
 import PrivateRoute from "./components/PrivateRoute.js";
+import SellerRoute from "./components/SellerRoute.js";
 import CartScreen from "./screens/CartScreen.js";
 import HomeScreen from "./screens/HomeScreen.js";
 import OrderHistoryScreen from "./screens/OrderHistoryScreen.js";
@@ -15,6 +16,7 @@ import ProductListScreen from "./screens/ProductListScreen.js";
 import ProductScreen from "./screens/ProductScreen.js";
 import ProfileScreen from "./screens/ProfileScreen.js";
 import RegisterScreen from "./screens/RegisterScreen.js";
+import SellerScreen from "./screens/SellerScreen.js";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen.js";
 import SigninScreen from "./screens/SigninScreen.js";
 import UserEditScreen from "./screens/UserEditScreen.js";
@@ -70,6 +72,22 @@ function App() {
           ) : (
             <Link to="/signin">Sign In</Link>
           )}
+          {userInfo && userInfo.isSeller && (
+            <div className="dropdown">
+              <Link to="#admin">
+                Seller{"  "}
+                <i className="fa fa-caret-down"></i>
+              </Link>
+              <ul className="dropdown-content">
+                <li>
+                  <Link to="/productlist/seller">Products</Link>
+                </li>
+                <li>
+                  <Link to="/orderlist/seller">Orders</Link>
+                </li>
+              </ul>
+            </div>
+          )}
           {userInfo && userInfo.isAdmin && (
             <div className="dropdown">
               <Link to="#admin">
@@ -95,6 +113,7 @@ function App() {
         </div>
       </header>
       <main>
+        <Route path="/seller/:id" component={SellerScreen} />
         <Route path="/cart/:id?" component={CartScreen} />
         <Route path="/product/:id" component={ProductScreen} exact />
         <Route path="/product/:id/edit" component={ProductEditScreen} exact />
@@ -107,9 +126,11 @@ function App() {
         <Route path="/order/:id" component={OrderScreen} />
         <PrivateRoute path="/profile" component={ProfileScreen} />
         <AdminRoute path="/productlist" component={ProductListScreen} />
-        <AdminRoute path="/orderlist" component={OrderListScreen} />
-        <AdminRoute path="/userlist" component={UserListScreen} />
+        <AdminRoute path="/orderlist" component={OrderListScreen} exact />
+        <AdminRoute path="/userlist" component={UserListScreen} exact />
         <AdminRoute path="/user/:id/edit" component={UserEditScreen} />
+        <SellerRoute path="/productlist/seller" component={ProductListScreen} />
+        <SellerRoute path="/orderlist/seller" component={OrderListScreen} />
         <Route path="/" component={HomeScreen} exact />
       </main>
       <footer className="row center">All rights reserved</footer>
