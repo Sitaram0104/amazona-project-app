@@ -1,5 +1,6 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import {
+  productCategoryListReducer,
   productCreateReducer,
   productDeleteReducer,
   productDetailsReducer,
@@ -67,6 +68,7 @@ const reducer = combineReducers({
   userDelete: userDeleteReducer,
   userUpdate: userUpdateReducer,
   userTopSellerList: userTopSellerListReducer,
+  productCategoryList: productCategoryListReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

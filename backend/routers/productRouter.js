@@ -17,6 +17,14 @@ productRouter.get(
 );
 
 productRouter.get(
+  "/categories",
+  expressAsyncHandler(async (req, res) => {
+    const categories = await Product.find().distinct("category");
+    res.send(categories);
+  })
+);
+
+productRouter.get(
   "/:id",
   expressAsyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id).populate(
@@ -98,12 +106,15 @@ productRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
     const name = req.query.name || "";
+    const category = req.query.category || "";
     const seller = req.query.seller || "";
     const sellerFilter = seller ? { seller } : {};
+    const categoryFilter = category ? { category } : {};
     const nameFilter = name ? { name: { $regex: name, $options: "i" } } : {};
     const products = await Product.find({
       ...sellerFilter,
       ...nameFilter,
+      ...categoryFilter,
     }).populate("seller", "seller.name seller.logo");
     res.send(products);
   })
