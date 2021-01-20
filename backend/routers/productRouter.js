@@ -5,29 +5,16 @@ import { isAdmin, isAuth, isSellerOrAdmin } from "../util.js";
 
 const productRouter = express.Router();
 
+// to import from data.js to databse
+import data from "../data.js";
 productRouter.get(
-  "/",
+  "/seed",
   expressAsyncHandler(async (req, res) => {
-    const seller = req.query.seller || "";
-    const sellerFilter = seller ? { seller } : {};
-    const products = await Product.find({ ...sellerFilter }).populate(
-      "seller",
-      "seller.name seller.logo"
-    );
-    res.send(products);
+    await Product.deleteMany({});
+    const createdProduct = await Product.insertMany(data.products);
+    res.send({ createdProduct });
   })
 );
-
-// to import from data.js to databse
-// import data from "../data.js";
-// productRouter.get(
-//   "/seed",
-//   expressAsyncHandler(async (req, res) => {
-//     await Product.deleteMany({});
-//     const createdProduct = await Product.insertMany(data.products);
-//     res.send({ createdProduct });
-//   })
-// );
 
 productRouter.get(
   "/:id",
@@ -83,6 +70,7 @@ productRouter.put(
       product.brand = req.body.brand;
       product.countInStock = req.body.countInStock;
       product.description = req.body.description;
+      product.seller = req.user._id;
       const updatedProduct = await product.save();
       res.send({ message: "Product Updated", product: updatedProduct });
     } else {
@@ -103,6 +91,19 @@ productRouter.delete(
     } else {
       res.status(404).send({ message: "Product Not Found" });
     }
+  })
+);
+
+productRouter.get(
+  "/",
+  expressAsyncHandler(async (req, res) => {
+    const seller = req.query.seller || "";
+    const sellerFilter = seller ? { seller } : {};
+    const products = await Product.find({ ...sellerFilter }).populate(
+      "seller",
+      "seller.name seller.logo"
+    );
+    res.send(products);
   })
 );
 

@@ -7,6 +7,7 @@ import { generateToken, isAdmin, isAuth } from "../util.js";
 const userRouter = express.Router();
 
 // to import from data.js to databse
+// import data from "../data.js";
 // userRouter.get(
 //   "/seed",
 //   expressAsyncHandler(async (req, res) => {
