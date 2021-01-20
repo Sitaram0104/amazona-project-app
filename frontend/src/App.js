@@ -3,6 +3,7 @@ import { Link, Route } from "react-router-dom";
 import { signout } from "./actions/userActions.js";
 import AdminRoute from "./components/AdminRoute.js";
 import PrivateRoute from "./components/PrivateRoute.js";
+import SearchBox from "./components/SearchBox.js";
 import SellerRoute from "./components/SellerRoute.js";
 import CartScreen from "./screens/CartScreen.js";
 import HomeScreen from "./screens/HomeScreen.js";
@@ -16,6 +17,7 @@ import ProductListScreen from "./screens/ProductListScreen.js";
 import ProductScreen from "./screens/ProductScreen.js";
 import ProfileScreen from "./screens/ProfileScreen.js";
 import RegisterScreen from "./screens/RegisterScreen.js";
+import SearchScreen from "./screens/SearchScreen.js";
 import SellerScreen from "./screens/SellerScreen.js";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen.js";
 import SigninScreen from "./screens/SigninScreen.js";
@@ -40,6 +42,9 @@ function App() {
           <Link to="/" className="brand">
             Amazona
           </Link>
+        </div>
+        <div>
+          <Route render={({ history }) => <SearchBox history={history} />} />
         </div>
         <div>
           <Link to="/cart">
@@ -124,6 +129,7 @@ function App() {
         <Route path="/placeorder" component={PlaceOrderScreen} />
         <Route path="/orderhistory" component={OrderHistoryScreen} />
         <Route path="/order/:id" component={OrderScreen} />
+        <Route path="/search/name/:name?" component={SearchScreen} exact />
         <PrivateRoute path="/profile" component={ProfileScreen} />
         <AdminRoute path="/productlist" component={ProductListScreen} exact />
         <AdminRoute path="/orderlist" component={OrderListScreen} exact />
