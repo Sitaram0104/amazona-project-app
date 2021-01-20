@@ -16,7 +16,16 @@ export default function Product(props) {
           <h2>{product.name}</h2>
         </Link>
         <Rating rating={product.rating} numReviews={product.numReviews} />
-        <div className="price">${product.price}</div>
+        <div className="row">
+          <div className="price">${product.price}</div>
+          {product.seller && (
+            <div>
+              <Link to={`/seller/${product.seller._id}`}>
+                {product.seller.seller && product.seller.seller.name}
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

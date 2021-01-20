@@ -125,9 +125,9 @@ function App() {
         <Route path="/orderhistory" component={OrderHistoryScreen} />
         <Route path="/order/:id" component={OrderScreen} />
         <PrivateRoute path="/profile" component={ProfileScreen} />
-        <AdminRoute path="/productlist" component={ProductListScreen} />
+        <AdminRoute path="/productlist" component={ProductListScreen} exact />
         <AdminRoute path="/orderlist" component={OrderListScreen} exact />
-        <AdminRoute path="/userlist" component={UserListScreen} exact />
+        <AdminRoute path="/userlist" component={UserListScreen} />
         <AdminRoute path="/user/:id/edit" component={UserEditScreen} />
         <SellerRoute path="/productlist/seller" component={ProductListScreen} />
         <SellerRoute path="/orderlist/seller" component={OrderListScreen} />

@@ -60,6 +60,18 @@ userRouter.post(
 );
 
 userRouter.get(
+  "/top-sellers",
+  expressAsyncHandler(async (req, res) => {
+    const topSellers = await User.find({ isSeller: true })
+      .sort({
+        "seller.rating": -1,
+      })
+      .limit(3);
+    res.send(topSellers);
+  })
+);
+
+userRouter.get(
   "/:id",
   expressAsyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id);
@@ -101,14 +113,6 @@ userRouter.put(
   })
 );
 
-userRouter.get(
-  "/",
-  expressAsyncHandler(async (req, res) => {
-    const users = await User.find();
-    res.send(users);
-  })
-);
-
 userRouter.delete(
   "/:id",
   isAuth,
@@ -145,6 +149,14 @@ userRouter.put(
     } else {
       res.status(404).send({ message: "User Not Found" });
     }
+  })
+);
+
+userRouter.get(
+  "/",
+  expressAsyncHandler(async (req, res) => {
+    const users = await User.find();
+    res.send(users);
   })
 );
 
