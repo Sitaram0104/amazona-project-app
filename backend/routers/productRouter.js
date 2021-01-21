@@ -6,15 +6,28 @@ import { isAdmin, isAuth, isSellerOrAdmin } from "../util.js";
 const productRouter = express.Router();
 
 // to import from data.js to databse
-import data from "../data.js";
-productRouter.get(
-  "/seed",
-  expressAsyncHandler(async (req, res) => {
-    await Product.deleteMany({});
-    const createdProduct = await Product.insertMany(data.products);
-    res.send({ createdProduct });
-  })
-);
+// import data from "../data.js";
+// import User from "../models/userModel.js";
+// productRouter.get(
+//   "/seed",
+//   expressAsyncHandler(async (req, res) => {
+//     await Product.deleteMany({});
+
+//     const seller = await User.findOne({ isSeller: true });
+//     if (seller) {
+//       const products = data.products.map((product) => ({
+//         ...product,
+//         seller: seller._id,
+//       }));
+//       const createdProduct = await Product.insertMany(products);
+//       res.send({ createdProduct });
+//     } else {
+//       res
+//         .status(500)
+//         .send({ message: "No seller found. first run /api/users/seed" });
+//     }
+//   })
+// );
 
 productRouter.get(
   "/categories",

@@ -11,6 +11,7 @@ import SearchBox from "./components/SearchBox.js";
 import SellerRoute from "./components/SellerRoute.js";
 import CartScreen from "./screens/CartScreen.js";
 import HomeScreen from "./screens/HomeScreen.js";
+import MapScreen from "./screens/MapScreen.js";
 import OrderHistoryScreen from "./screens/OrderHistoryScreen.js";
 import OrderListScreen from "./screens/OrderListScreen.js";
 import OrderScreen from "./screens/OrderScreen.js";
@@ -199,6 +200,7 @@ function App() {
           exact
         />
         <PrivateRoute path="/profile" component={ProfileScreen} />
+        <PrivateRoute path="/map" component={MapScreen} />
         <AdminRoute path="/productlist" component={ProductListScreen} exact />
         <AdminRoute path="/orderlist" component={OrderListScreen} exact />
         <AdminRoute path="/userlist" component={UserListScreen} />
