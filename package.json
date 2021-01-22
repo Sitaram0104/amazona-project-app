@@ -5,10 +5,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "cd frontend && npm start",
-    "api": "cd backend && nodemon server",
-    "start": "concurrently \"npm run api \" \"npm run client \""
+    "build": "cd frontend && npm install && npm run build",
+    "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sitaram0104/amazona-project-app.git"
   },
   "keywords": [],
   "author": "",
@@ -22,10 +24,10 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.11",
     "multer": "^1.4.2",
-    "react-paypal-button-v2": "^2.6.2"
+    "react-paypal-button-v2": "^2.6.2",
+    "@types/multer": "^1.4.5"
   },
   "devDependencies": {
-    "@types/multer": "^1.4.5",
     "eslint": "^7.17.0",
     "eslint-plugin-react": "^7.22.0"
   }
