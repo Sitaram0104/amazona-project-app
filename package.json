@@ -3,12 +3,17 @@
   "type": "module",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "heroku-postbuild": "cd frontend && npm install && npm run build",
-    "client": "cd frontend && npm start",
-    "api": "cd backend && nodemon server",
-    "start": "npm run api"
+    "frontend-install": "npm install --prefix frontend",
+    "build": "concurrently \"cd frontend && npm run build\" \"npm build \"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend": "cd ./frontend && npm start ",
+    "server-prod": "node app.js",
+    "server": "nodemon server.js",
+    "start": "node app.js",
+    "start:dev": "concurrently --kill-others  \"npm run frontend\" \"npm run server\" ",
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "repository": {
     "type": "git",
