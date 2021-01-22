@@ -30,24 +30,7 @@ app.get("/api/config/google", (req, res) => {
 });
 
 const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, "../frontend/build")));
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/build")));
-  //
-  app.get("*", (req, res) => {
-    res.sendFile(path.join((__dirname = "frontend/build/index.html")));
-  });
-}
-//build mode
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "../frontend/public/index.html"));
-});
-
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
-app.get("/", (req, res) => {
-  res.send("Server is ready");
-});
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
@@ -55,6 +38,25 @@ app.use((err, req, res, next) => {
   if (x === 1) {
     next();
   }
+});
+
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
+  // production
+  app.get("*", (req, res) => {
+    console.log("production");
+    res.sendFile(path.join((__dirname = "frontend/build/index.html")));
+  });
+}
+// build mode
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "/frontend/build/index.html"));
+});
+
+app.get("/", (req, res) => {
+  res.send("Server is ready");
 });
 
 const PORT = process.env.PORT || 8000;

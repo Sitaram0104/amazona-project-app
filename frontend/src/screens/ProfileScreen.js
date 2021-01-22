@@ -80,7 +80,7 @@ export default function ProfileScreen() {
             )}
             {successUpdate && (
               <MessageBox variant="success">
-                Profile Updateed Successfully
+                Profile Updated Successfully
               </MessageBox>
             )}
             <div>
