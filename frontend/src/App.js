@@ -195,13 +195,18 @@ function App() {
           exact
         />
         <Route
-          path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order"
+          path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber"
           component={SearchScreen}
           exact
         />
         <PrivateRoute path="/profile" component={ProfileScreen} />
         <PrivateRoute path="/map" component={MapScreen} />
         <AdminRoute path="/productlist" component={ProductListScreen} exact />
+        <AdminRoute
+          path="/productlist/pageNumber/:pageNumber"
+          component={ProductListScreen}
+          exact
+        />
         <AdminRoute path="/orderlist" component={OrderListScreen} exact />
         <AdminRoute path="/userlist" component={UserListScreen} />
         <AdminRoute path="/user/:id/edit" component={UserEditScreen} />

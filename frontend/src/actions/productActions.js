@@ -24,6 +24,7 @@ import {
 import axios from "axios";
 
 export const listProducts = ({
+  pageNumber = "",
   seller = "",
   name = "",
   category = "",
@@ -35,7 +36,7 @@ export const listProducts = ({
   dispatch({ type: PRODUCT_LIST_REQUEST });
   try {
     const { data } = await axios.get(
-      `/api/products?seller=${seller}&name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&order=${order}`
+      `/api/products?pageNumber=${pageNumber}&seller=${seller}&name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&order=${order}`
     );
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
