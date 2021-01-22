@@ -47,11 +47,12 @@ if (process.env.NODE_ENV === "production") {
   // production
   app.get("*", (req, res) => {
     console.log("production");
-    res.sendFile(path.join((__dirname = "frontend/build/index.html")));
+    res.sendFile(path.join(__dirname, "..", "/frontend/build/index.html"));
   });
 }
 // build mode
 app.get("*", (req, res) => {
+  console.log("build");
   res.sendFile(path.join(__dirname, "..", "/frontend/build/index.html"));
 });
 
