@@ -9,9 +9,9 @@
     "build": "concurrently \"cd frontend && npm run build\" \"npm build \"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "frontend": "cd ./frontend && npm start ",
-    "server-prod": "node app.js",
-    "server": "nodemon server.js",
-    "start": "node app.js",
+    "server-prod": "cd ./backend && node app.js",
+    "server": "cd ./backend && nodemon server.js",
+    "start": "cd ./backend && node server.js",
     "start:dev": "concurrently --kill-others  \"npm run frontend\" \"npm run server\" ",
     "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
