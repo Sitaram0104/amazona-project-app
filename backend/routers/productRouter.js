@@ -146,7 +146,7 @@ productRouter.get(
         : { _id: -1 };
     const pageSize = 3;
     const page = Number(req.query.pageNumber) || 1;
-    const count = await Product.count({
+    const count = await Product.countDocuments({
       ...sellerFilter,
       ...nameFilter,
       ...categoryFilter,
