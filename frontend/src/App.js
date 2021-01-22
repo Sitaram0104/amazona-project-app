@@ -214,7 +214,9 @@ function App() {
         <SellerRoute path="/orderlist/seller" component={OrderListScreen} />
         <Route path="/" component={HomeScreen} exact />
       </main>
-      <footer className="row center">All rights reserved</footer>
+      <footer className="row center">
+        Created by Sitaram Meena &copy; All rights reserved
+      </footer>
     </div>
   );
 }
